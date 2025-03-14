@@ -1,9 +1,12 @@
-// pages/index.js
+import Link from 'next/link';
+
 export default function Home() {
-    return (
-      <div>
-        <h1>Home Page</h1>
-        <p>Please visit <a href="/login">/login</a> to log in.</p>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <p>
+        Please visit <Link href="/login">Login</Link> to sign in.
+      </p>
+    </div>
+  );
+}
