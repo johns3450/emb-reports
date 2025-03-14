@@ -1,7 +1,9 @@
+// pages/api/auth/[...nextauth].js
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export default NextAuth({
+  debug: true, // Enable debugging for development
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -10,7 +12,6 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Replace with your own logic: compare against environment variables or a database
         const validEmail = process.env.AUTH_EMAIL;
         const validPassword = process.env.AUTH_PASSWORD;
         if (
