@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mini-css-extract-plugin": "^2.9.2",
     "next": "15.2.2",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
