@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "mini-css-extract-plugin": "^2.9.2",
+    "mongodb": "^6.14.2",
     "next": "15.2.2",
     "next-auth": "^4.24.11",
+    "nodemailer": "^6.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
