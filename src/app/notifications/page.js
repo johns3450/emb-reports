@@ -38,6 +38,7 @@ export default function NotificationsPage() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // include cookies with the request
         body: JSON.stringify({ title, description, dateTime }),
       });
       const data = await res.json();
