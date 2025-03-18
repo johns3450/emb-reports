@@ -1,9 +1,8 @@
-// pages/api/auth/[...nextauth].js
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export default NextAuth({
-  debug: true, // Enable debugging for development
+export const authOptions = {
+  debug: true,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -14,10 +13,7 @@ export default NextAuth({
       async authorize(credentials) {
         const validEmail = process.env.AUTH_EMAIL;
         const validPassword = process.env.AUTH_PASSWORD;
-        if (
-          credentials.email === validEmail &&
-          credentials.password === validPassword
-        ) {
+        if (credentials.email === validEmail && credentials.password === validPassword) {
           return { id: 1, name: "User", email: validEmail };
         }
         return null;
@@ -34,10 +30,12 @@ export default NextAuth({
       options: {
         httpOnly: true,
         secure: true,
-        sameSite: "lax", // Adjust if necessary (try "strict" if needed)
+        sameSite: "lax",
         path: "/",
-        domain: ".expandmybrand.net", // This allows the cookie to be shared across subdomains
+        domain: ".expandmybrand.net",
       },
     },
   },
-});
+};
+
+export default NextAuth(authOptions);
