@@ -28,4 +28,16 @@ export default NextAuth({
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  cookies: {
+    sessionToken: {
+      name: `__Secure-next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax", // Adjust if necessary (try "strict" if needed)
+        path: "/",
+        domain: ".expandmybrand.net", // This allows the cookie to be shared across subdomains
+      },
+    },
+  },
 });
