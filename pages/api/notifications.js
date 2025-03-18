@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   try {
     const client = await clientPromise;
     // Explicitly specify the database name if needed.
-    const db = client.db("expandmybrand");
+    const db = client.db("portalData");
     const collection = db.collection("notifications");
 
     if (req.method === "GET") {
