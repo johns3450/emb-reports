@@ -3,6 +3,8 @@ import { getSession } from "next-auth/react";
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
+
+  console.log("Cookies on request:", req.headers.cookie);
   // Handle preflight requests by sending CORS headers
   if (req.method === "OPTIONS") {
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
