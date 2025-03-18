@@ -3,6 +3,12 @@ import { getSession } from "next-auth/react";
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
+  // Handle preflight OPTIONS request
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
   const session = await getSession({ req });
   if (!session) {
     res.status(401).json({ message: "Unauthorized" });
@@ -11,7 +17,8 @@ export default async function handler(req, res) {
   const userEmail = session.user.email;
 
   const client = await clientPromise;
-  const db = client.db();
+  // If you want to be explicit about the database, e.g. "expandmybrand":
+  const db = client.db("expandmybrand");
   const collection = db.collection("notifications");
 
   if (req.method === "GET") {
@@ -46,20 +53,20 @@ export default async function handler(req, res) {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: process.env.GMAIL_USER, // e.g., no-reply@expandmybrand.net (set in your .env.local)
-          pass: process.env.GMAIL_PASS, // Gmail password or app password
+          user: process.env.GMAIL_USER, // credentials loaded from env
+          pass: process.env.GMAIL_PASS,
         },
       });
 
       const mailOptions = {
-        from: "no-reply@prizeone.co.uk", // The alias you set up
-        to: "notifications@prizeone.co.uk", // Your Google Group for receiving notifications
+        from: "no-reply@prizeone.co.uk", // your alias for sending emails
+        to: "notifications@prizeone.co.uk", // recipient, e.g. your Google Group
         subject: "New App Notification Request",
         text: `New notification request from ${userEmail}:
               
-      Title: ${title}
-      Description: ${description}
-      Scheduled Date/Time: ${dateTime}`,
+Title: ${title}
+Description: ${description}
+Scheduled Date/Time: ${dateTime}`,
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
