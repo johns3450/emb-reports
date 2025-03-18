@@ -2,8 +2,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = {
-  debug: true,
+export default NextAuth({
+  debug: true, // Enable debugging for development
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -28,6 +28,4 @@ export const authOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
-
-export default NextAuth(authOptions);
+});

@@ -1,10 +1,9 @@
 import clientPromise from "../../lib/mongodb";
-import { unstable_getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]"; // adjust path as needed
+import { getSession } from "next-auth/react";
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
-  // Handle preflight requests
+  // Handle preflight requests by sending CORS headers
   if (req.method === "OPTIONS") {
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -12,8 +11,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Use unstable_getServerSession to get the session on the server
-  const session = await unstable_getServerSession(req, res, authOptions);
+  // Get the session
+  const session = await getSession({ req });
   if (!session) {
     res.status(401).json({ message: "Unauthorized" });
     return;
@@ -22,7 +21,8 @@ export default async function handler(req, res) {
 
   try {
     const client = await clientPromise;
-    const db = client.db("portalData"); // updated to your database name
+    // Explicitly specify the database name if needed.
+    const db = client.db("portalData");
     const collection = db.collection("notifications");
 
     if (req.method === "GET") {
@@ -58,14 +58,14 @@ export default async function handler(req, res) {
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
-            user: process.env.GMAIL_USER,
+            user: process.env.GMAIL_USER, // from your .env.local
             pass: process.env.GMAIL_PASS,
           },
         });
 
         const mailOptions = {
-          from: "no-reply@prizeone.co.uk",
-          to: "notifications@prizeone.co.uk",
+          from: "no-reply@prizeone.co.uk", // Your sending alias
+          to: "notifications@prizeone.co.uk", // Destination, e.g. your Google Group
           subject: "New App Notification Request",
           text: `New notification request from ${userEmail}:
           
@@ -91,6 +91,7 @@ Scheduled Date/Time: ${dateTime}`,
       res.status(405).json({ message: "Method not allowed" });
     }
   } catch (err) {
+    // This catch is for errors connecting to MongoDB, etc.
     console.error("General error in API route:", err);
     res.status(500).json({ message: "Internal Server Error" });
   }
