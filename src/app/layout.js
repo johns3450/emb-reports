@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>My Reports App</title>
+        <title>ExpandMyBrand Portal</title>
       </head>
       <body>
         {/* Provide the NextAuth session to the app */}

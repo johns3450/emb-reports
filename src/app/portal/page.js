@@ -15,15 +15,28 @@ export default function PortalPage() {
 
   return (
     <div className="container">
-      <h1>Welcome to the ExpandMyBrand Portal</h1>
-      <img src="/ExpandMyBrand_Logo.png" alt="ExpandMyBrand Logo" className="logo" />
-      <p>Access your reports, app notifications, and more.</p>
+      <h1>Welcome to the ExpandMyBrand Customer Portal</h1>
+      <img src="/ExpandMyBrand_Logo.png" alt="ExpandMyBrand" className="logo" />
+      <p>Access your reports, app notification requests, and more.</p>
       <div className="boxes">
         <div className="box" onClick={() => goToPage("/reports")}>
-          <h2>Reports</h2>
+          <h2>AI Chatbot Reports</h2>
         </div>
         <div className="box" onClick={() => goToPage("/notifications")}>
-          <h2>App Notifications</h2>
+          <h2>App Notification Requests</h2>
+        </div>
+        {/* New billing link box */}
+        <div
+          className="box"
+          onClick={() =>
+            window.open("https://books.zohosecure.eu/portal/expandmybrand", "_blank")
+          }
+        >
+          <h2>Billing & Invoices</h2>
+          {/* "External link" label with a small arrow icon */}
+          <p style={{ marginTop: 10, fontSize: "0.9rem" }}>
+            External link <span style={{ fontSize: "1rem" }}>↗</span>
+          </p>
         </div>
       </div>
 
