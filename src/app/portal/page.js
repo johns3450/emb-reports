@@ -15,8 +15,10 @@ export default function PortalPage() {
 
   return (
     <div className="container">
+      <div className="header-text">
       <h1>Welcome to the ExpandMyBrand Customer Portal</h1>
       <p>Access your reports, app notification requests, and more.</p>
+      </div>
       <div className="boxes">
         <div className="box" onClick={() => goToPage("/reports")}>
           <h2>AI Chatbot Reports</h2>
@@ -45,6 +47,9 @@ export default function PortalPage() {
           text-align: center;
           background-color: #f0f0f0;
           min-height: calc(100vh - 60px); /* accounting for footer */
+        }
+        .header-text {
+          gap: 10px;
         }
         .logo {
           max-width: 200px;
