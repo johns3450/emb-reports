@@ -16,10 +16,6 @@ export default function Reports() {
         </div>
       </div>
 
-      <div className="footer">
-        <img src="/ExpandMyBrand_Logo.png" alt="ExpandMyBrand" className="footer-logo" />
-      </div>
-
       <style jsx>{`
         .container {
           background-color: #f0f0f0;
@@ -43,21 +39,6 @@ export default function Reports() {
           width: 100%;
           max-width: 1200px;
           margin: 0 auto;
-        }
-        .footer {
-          background-color: #ffffff;
-          width: 100%;
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 10px 0;
-          box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .footer-logo {
-          max-width: 100px;
         }
       `}</style>
     </>

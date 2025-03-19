@@ -12,14 +12,19 @@ export default function ProfilePage() {
   }
 
   function handleLogout() {
-    signOut({ callbackUrl: "/login" }); 
+    signOut({ callbackUrl: "/login" });
   }
 
   return (
     <div style={{ margin: "20px" }}>
-      <h1>Your Profile</h1>
+      <h1 className="title">Your Profile</h1>
       <p>Welcome, {session.user.email}!</p>
       <button onClick={handleLogout}>Log Out</button>
+      <style jsx>{`
+        .title {
+          text-align: center;
+        }
+      `}</style>
     </div>
   );
 }

@@ -61,7 +61,7 @@ export default function NotificationsPage() {
 
   return (
     <div className="container">
-      <h1>App Notification Requests</h1>
+      <h1 className="title">App Notification Requests</h1>
       <div className="tabs">
         <button
           className={activeTab === "new" ? "active" : ""}
@@ -139,13 +139,16 @@ export default function NotificationsPage() {
       <style jsx>{`
         .container {
           padding: 20px;
-          max-width: 800px;
           margin: 0 auto;
           background-color: #f0f0f0;
           min-height: calc(100vh - 60px); /* accounting for footer */
         }
+        .title {
+          text-align: center;
+        }
         .tabs {
           margin: 20px 0;
+          text-align: center;
         }
         .tabs button {
           padding: 10px 20px;
@@ -156,6 +159,16 @@ export default function NotificationsPage() {
           font-weight: bold;
           background-color: #0070f3;
           color: white;
+        }
+        .new-request {
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .existing-requests {
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
         }
         form div {
           margin-bottom: 15px;
