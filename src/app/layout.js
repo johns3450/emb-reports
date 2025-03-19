@@ -1,6 +1,5 @@
-// src/app/layout.js
 "use client";
-
+import "./globals.css"; // Import global styles
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -8,18 +7,17 @@ import Link from "next/link";
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  // If the current route starts with "/login", don't show the header
+  // Hide header on the login page
   const hideHeader = pathname.startsWith("/login");
 
   return (
     <html lang="en">
       <head>
-        <title>ExpandMyBrand Portal</title>
+        <title>ExpandMyBrand Customer Portal</title>
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        {/* Provide the NextAuth session to the app */}
         <SessionProvider>
-          {/* Conditionally show the header on all routes except /login */}
           {!hideHeader && <Header />}
           {children}
         </SessionProvider>
@@ -42,7 +40,7 @@ function Header() {
       </div>
       <div style={userIconStyle}>
         <Link href="/profile">
-          {/* Simple user icon; you could use an actual icon library */}
+          {/* Simple user icon; you can swap it with an icon library if needed */}
           <div style={iconCircleStyle}>👤</div>
         </Link>
       </div>
@@ -50,7 +48,7 @@ function Header() {
   );
 }
 
-// Simple inline styles for demonstration
+// Inline styles for the header
 const headerStyle = {
   display: "flex",
   justifyContent: "space-between",

@@ -16,7 +16,6 @@ export default function PortalPage() {
   return (
     <div className="container">
       <h1>Welcome to the ExpandMyBrand Customer Portal</h1>
-      <img src="/ExpandMyBrand_Logo.png" alt="ExpandMyBrand" className="logo" />
       <p>Access your reports, app notification requests, and more.</p>
       <div className="boxes">
         <div className="box" onClick={() => goToPage("/reports")}>
