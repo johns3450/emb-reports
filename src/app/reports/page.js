@@ -11,7 +11,6 @@ export default function Reports() {
     <>
       <div className="container">
         <h1 className="title">AI Chatbot Reports Dashboard</h1>
-        <img src="/Leisuretime_Logo.png" alt="Leisuretime" className="logo" />
         <div className="iframe-container">
         <iframe src="https://lookerstudio.google.com/embed/reporting/0dc53cbc-caa0-4e14-b3a4-25d05c94dd1c/page/c8RBF" width="100%" height="900"></iframe>
         </div>
@@ -32,11 +31,10 @@ export default function Reports() {
           align-items: center;
         }
         .title {
-        font-family: Arial, sans-serif;
-        font-size: 2rem;
-        margin-bottom: 10px;
-        text-align: center;
-}
+          font-size: 2rem;
+          margin-bottom: 10px;
+          text-align: center;
+        }
         .logo {
           max-width: 200px;
           margin-bottom: 40px;

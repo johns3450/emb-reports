@@ -1,5 +1,7 @@
+// src/app/layout.js
 "use client";
-import "./globals.css"; // Import global styles
+
+import "./globals.css"; // Make sure global CSS is imported
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -7,7 +9,7 @@ import Link from "next/link";
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  // Hide header on the login page
+  // Hide header on login page
   const hideHeader = pathname.startsWith("/login");
 
   return (
@@ -29,6 +31,8 @@ export default function RootLayout({ children }) {
 function Header() {
   return (
     <header style={headerStyle}>
+      {/* Left placeholder to balance the user icon on the right */}
+      <div style={placeholderStyle}></div>
       <div style={logoContainerStyle}>
         <Link href="/portal">
           <img
@@ -40,7 +44,6 @@ function Header() {
       </div>
       <div style={userIconStyle}>
         <Link href="/profile">
-          {/* Simple user icon; you can swap it with an icon library if needed */}
           <div style={iconCircleStyle}>👤</div>
         </Link>
       </div>
@@ -51,20 +54,24 @@ function Header() {
 // Inline styles for the header
 const headerStyle = {
   display: "flex",
-  justifyContent: "space-between",
   alignItems: "center",
   backgroundColor: "#fff",
   padding: "10px 20px",
   boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
 };
 
+const placeholderStyle = {
+  flex: 1,
+};
+
 const logoContainerStyle = {
-  display: "flex",
-  alignItems: "center",
+  flex: "none",
 };
 
 const userIconStyle = {
+  flex: 1,
   display: "flex",
+  justifyContent: "flex-end",
   alignItems: "center",
 };
 

@@ -16,8 +16,8 @@ export default function PortalPage() {
   return (
     <div className="container">
       <div className="header-text">
-      <h1>Welcome to the ExpandMyBrand Customer Portal</h1>
-      <p>Access your reports, app notification requests, and more.</p>
+        <h1>Welcome to the ExpandMyBrand Customer Portal</h1>
+        <p>Access your reports, app notification requests, and more.</p>
       </div>
       <div className="boxes">
         <div className="box" onClick={() => goToPage("/reports")}>
@@ -34,7 +34,6 @@ export default function PortalPage() {
           }
         >
           <h2>Billing & Invoices</h2>
-          {/* "External link" label with a small arrow icon */}
           <p style={{ marginTop: 10, fontSize: "0.9rem" }}>
             External link <span style={{ fontSize: "1rem" }}>↗</span>
           </p>
@@ -50,16 +49,14 @@ export default function PortalPage() {
         }
         .header-text {
           gap: 10px;
-        }
-        .logo {
-          max-width: 200px;
-          margin: 20px auto;
+          display: grid;
         }
         .boxes {
           display: flex;
+          flex-wrap: wrap;
           justify-content: center;
-          gap: 20px;
-          margin-top: 40px;
+          gap: 15px;
+          margin-top: 30px;
         }
         .box {
           background-color: #fff;
@@ -71,6 +68,11 @@ export default function PortalPage() {
         }
         .box:hover {
           transform: scale(1.05);
+        }
+        @media (max-width: 600px) {
+          .box {
+            width: 90%;
+          }
         }
       `}</style>
     </div>
